@@ -566,6 +566,56 @@
             cursor: not-allowed;
         }
 
+        /* Music Component */
+        .music-container {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(192, 21, 47, 0.1));
+            border-radius: 20px;
+            border: 3px solid var(--warm-gold);
+        }
+
+        .music-icon {
+            font-size: 4em;
+            margin-bottom: 25px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .music-link {
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .music-btn {
+            padding: 20px 40px;
+            background: linear-gradient(135deg, var(--warm-gold), var(--primary-red));
+            color: var(--white);
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 900;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(192, 21, 47, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 30px rgba(192, 21, 47, 0.5);
+        }
+
+        .music-text {
+            font-size: 1.2em;
+            color: var(--deep-green);
+            line-height: 1.8;
+            font-style: italic;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-left: 5px solid var(--primary-red);
+            border-radius: 12px;
+        }
+
         /* Escape Room Component */
         .escape-room-container {
             background: linear-gradient(135deg, #f8f8f8, #efefef);
@@ -938,12 +988,10 @@
             },
             {
                 day: 3,
-                type: 'escape',
-                title: 'Dia 3: Endevina el Moment 🔮',
-                enigma: 'Quin mes vam començar la nostra història d\'amor?',
-                hint: 'Pista: Pensa en aquell dia especial quan tot va canviar per a nosaltres...',
-                answer: 'placeholder',
-                correctMessage: '✓ Exacte! El mes que va marcar el início de la nostra història més bonica. Cada moment des d\'aleshores és meravellós. 💫❤️'
+                type: 'music',
+                title: 'Dia 3: Una Cançó que em recorda a tu  🎵',
+                songUrl: 'https://www.youtube.com/watch?v=d4iGZ_jP-1U',
+                text: 'L\'escoltava cada dia durant les primeres setmanes que t\'estava coneixent. Es possiblement la cançó que més he sentit de tot el cor. Escolta-la pensant en nosaltres. 💕'
             },
             {
                 day: 4,
@@ -1169,7 +1217,7 @@
                 if (!isUnlocked(item.day)) {
                     inner.innerHTML = `<div class="lock-icon">🔒</div><div class="day-number">${item.day}</div>`;
                 } else {
-                    const emoji = item.type === 'foto' ? '💝' : item.type === 'trivia' ? '💭' : '🔑';
+                    const emoji = item.type === 'foto' ? '💝' : item.type === 'trivia' ? '💭' : item.type === 'music' ? '🎵' : '🔑';
                     inner.innerHTML = `<div class="day-number">${item.day}</div><div class="day-label">${emoji}</div>`;
                     
                     if (isCompleted(item.day)) {
@@ -1221,6 +1269,17 @@
                     </div>
                 `;
                 body.innerHTML = photoHtml;
+                saveCompleted(item.day);
+            } else if (item.type === 'music') {
+                body.innerHTML = `
+                    <div class="music-container">
+                        <div class="music-icon">🎵</div>
+                        <a href="${item.songUrl}" target="_blank" class="music-link">
+                            <button class="music-btn">Escolta la Cançó en YouTube</button>
+                        </a>
+                        <div class="music-text">${item.text}</div>
+                    </div>
+                `;
                 saveCompleted(item.day);
             } else if (item.type === 'trivia') {
                 body.innerHTML = `
