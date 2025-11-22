@@ -527,11 +527,28 @@
             line-height: 1.4;
         }
 
+        /* Image Trivia Component */
+        .image-trivia-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .trivia-image {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            border: 4px solid var(--primary-red);
+        }
+
         .trivia-options {
             display: flex;
             flex-direction: column;
             gap: 15px;
             margin-bottom: 25px;
+            width: 100%;
         }
 
         .option-btn {
@@ -995,12 +1012,13 @@
             },
             {
                 day: 4,
-                type: 'trivia',
-                title: 'Dia 4: Els Nostres Gustos 💕',
-                question: 'Quin és el nostre plat favorit per compartir?',
-                options: ['Placeholder 1', 'Placeholder 2', 'Placeholder 3', 'Placeholder 4'],
-                answer: 'Placeholder 1',
-                correctMessage: '✓ Exactament! Els millors moments els compartim prenent aquest plat junts. 🍽️❤️'
+                type: 'image-trivia',
+                title: 'Dia 4: Foto Trivia 💕',
+                image: 'https://i.imgur.com/bjWbEeN.jpg',
+                question: 'On vaig fer aquesta foto? Estaves al meu costat 😊',
+                hint: 'Pista: Des de l\'alçada després d\'un calvari...',
+                answer: 'torroella',
+                correctMessage: '✓ Yes! Es de les poques fotos que tinc del primer viatget amb tu a l\'Estartit. Uns dies on el meu amor per tu estava incrementant de manera exponencial ❤️'
             },
             {
                 day: 5,
@@ -1217,7 +1235,7 @@
                 if (!isUnlocked(item.day)) {
                     inner.innerHTML = `<div class="lock-icon">🔒</div><div class="day-number">${item.day}</div>`;
                 } else {
-                    const emoji = item.type === 'foto' ? '💝' : item.type === 'trivia' ? '💭' : item.type === 'music' ? '🎵' : '🔑';
+                    const emoji = item.type === 'foto' ? '💝' : item.type === 'trivia' ? '💭' : item.type === 'image-trivia' ? '🖼️' : item.type === 'music' ? '🎵' : '🔑';
                     inner.innerHTML = `<div class="day-number">${item.day}</div><div class="day-label">${emoji}</div>`;
                     
                     if (isCompleted(item.day)) {
@@ -1281,6 +1299,22 @@
                     </div>
                 `;
                 saveCompleted(item.day);
+            } else if (item.type === 'image-trivia') {
+                body.innerHTML = `
+                    <div class="image-trivia-container">
+                        <img src="${item.image}" alt="Trivia Image" class="trivia-image">
+                        <div class="trivia-question">${item.question}</div>
+                        ${item.hint ? `
+                        <div class="hint-section">
+                            <button class="hint-btn" onclick="toggleHint()">💡 Mostra la pista</button>
+                            <div class="hint-text" id="hint-text">${item.hint}</div>
+                        </div>
+                        ` : ''}
+                        <input type="text" class="answer-input" id="answer-input" placeholder="Escriu la resposta aquí...">
+                        <button class="submit-btn" onclick="submitImageTriviaAnswer('${item.answer}', ${item.day})">Validar Resposta</button>
+                        <div class="feedback" id="feedback"></div>
+                    </div>
+                `;
             } else if (item.type === 'trivia') {
                 body.innerHTML = `
                     <div class="trivia-question">${item.question}</div>
@@ -1364,6 +1398,39 @@
             if (input.value.toLowerCase().trim() === correct.toLowerCase().trim()) {
                 const currentItem = adventData.find(d => d.day === day);
                 const message = currentItem.correctMessage || '✓ Correcte! Has desbloquejat el misteri! 🔓';
+                feedback.className = 'feedback active correct';
+                feedback.textContent = message;
+                input.disabled = true;
+                btn.disabled = true;
+                saveCompleted(day);
+                createConfetti();
+            } else {
+                feedback.className = 'feedback active incorrect';
+                feedback.textContent = '✗ Incorrecte. Torna-ho a provar!';
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        function submitImageTriviaAnswer(correct, day) {
+            const input = document.getElementById('answer-input');
+            const feedback = document.getElementById('feedback');
+            const btn = event.target;
+            
+            const userAnswer = input.value.toLowerCase().trim();
+            const correctAnswer = correct.toLowerCase().trim();
+            
+            // Check if exact match or if any word matches
+            let isCorrect = userAnswer === correctAnswer;
+            if (!isCorrect) {
+                const userWords = userAnswer.split(/\s+/);
+                const correctWords = correctAnswer.split(/\s+/);
+                isCorrect = userWords.some(word => correctWords.includes(word));
+            }
+
+            if (isCorrect) {
+                const currentItem = adventData.find(d => d.day === day);
+                const message = currentItem.correctMessage || '✓ Correcte! 🎉';
                 feedback.className = 'feedback active correct';
                 feedback.textContent = message;
                 input.disabled = true;
