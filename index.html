@@ -94,26 +94,46 @@
             margin-bottom: 40px;
             text-shadow: var(--text-shadow);
             animation: slideDown 0.8s ease-out;
-            padding: 40px 20px;
-            background: linear-gradient(180deg, rgba(192, 21, 47, 0.3) 0%, rgba(50, 184, 198, 0.3) 100%);
-            border-radius: 20px;
-            border: 3px solid rgba(255, 215, 0, 0.4);
+            padding: 50px 30px;
+            background: linear-gradient(135deg, rgba(192, 21, 47, 0.5) 0%, rgba(139, 0, 0, 0.5) 50%, rgba(192, 21, 47, 0.5) 100%);
+            border-radius: 25px;
+            border: 4px solid var(--warm-gold);
             position: relative;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 15px 35px rgba(192, 21, 47, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.1) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         header::before {
-            content: '🎄 ❤️ ⭐ 🎁 ❄️ 💝 ⛄ 🔔 🎄';
-            display: block;
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            letter-spacing: 10px;
-            animation: twinkle 2s ease-in-out infinite;
+            content: '';
+            display: none;
         }
 
         @keyframes twinkle {
             0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.05); }
+            50% { opacity: 0.8; transform: scale(1.08); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
         }
 
         @keyframes slideDown {
@@ -128,53 +148,92 @@
         }
 
         h1 {
-            font-size: 3.2em;
-            margin-bottom: 15px;
-            letter-spacing: 3px;
-            animation: glow 3s ease-in-out infinite;
-            font-weight: 700;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            animation: glow 3s ease-in-out infinite, bounce 2.5s ease-in-out infinite;
+            font-weight: 900;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         @keyframes glow {
             0%, 100% { 
-                text-shadow: var(--text-shadow), 0 0 15px var(--warm-gold);
+                text-shadow: var(--text-shadow), 0 0 20px var(--warm-gold), 0 0 40px rgba(192, 21, 47, 0.6);
             }
             50% { 
-                text-shadow: var(--text-shadow), 0 0 30px var(--warm-gold), 0 0 50px #FF69B4;
+                text-shadow: var(--text-shadow), 0 0 35px var(--warm-gold), 0 0 60px rgba(192, 21, 47, 0.8), 0 0 80px #8B0000;
             }
         }
 
         .subtitle {
-            font-size: 1.4em;
-            color: var(--cream);
-            margin-bottom: 15px;
+            font-size: 1.5em;
+            color: var(--warm-gold);
+            margin-bottom: 20px;
             font-style: italic;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .date-info {
-            font-size: 1.15em;
+            font-size: 1.25em;
             color: var(--warm-gold);
-            font-weight: 600;
-            margin-bottom: 20px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out 0.4s both;
+            letter-spacing: 0.3px;
         }
 
         .testing-mode {
-            margin-top: 20px;
-            padding: 12px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 10px;
+            margin-top: 25px;
+            padding: 16px 28px;
+            background: rgba(139, 0, 0, 0.3);
+            border-radius: 15px;
             display: inline-block;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
+            border: 2px solid var(--warm-gold);
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out 0.6s both;
         }
 
         .testing-mode label {
-            color: white;
+            color: var(--warm-gold);
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 0.95em;
-            font-weight: 500;
+            gap: 12px;
+            font-size: 1.05em;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .testing-mode:hover label {
+            color: var(--white);
+            text-shadow: 0 0 10px var(--warm-gold);
         }
 
         .testing-mode input {
@@ -195,7 +254,7 @@
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--warm-gold), var(--primary-red), #FF69B4);
+            background: linear-gradient(90deg, var(--warm-gold), var(--primary-red), #8B0000);
             transition: width 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
@@ -235,7 +294,7 @@
         }
 
         .day-box.unlocked .day-box-inner {
-            background: linear-gradient(135deg, var(--primary-red) 0%, #FF69B4 50%, var(--warm-gold) 100%);
+            background: linear-gradient(135deg, var(--primary-red) 0%, #8B0000 50%, var(--warm-gold) 100%);
             animation: unlock 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), inset 0 0 15px rgba(255, 255, 255, 0.3);
         }
@@ -665,6 +724,110 @@
             backdrop-filter: blur(10px);
         }
 
+        .fullscreen-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-red);
+            color: var(--white);
+            border: none;
+            padding: 16px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: 700;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .fullscreen-btn:hover {
+            background: var(--deep-green);
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .fullscreen-view {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            background: url('https://i.imgur.com/W1lsH7A.jpg') center/cover fixed no-repeat;
+            background-color: #1a686f;
+            overflow: hidden;
+        }
+
+        .fullscreen-view::before,
+        .fullscreen-view::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2001;
+        }
+
+        .fullscreen-view::before {
+            background-image: 
+                radial-gradient(circle, #fff 1px, transparent 1px),
+                radial-gradient(circle, #fff 1px, transparent 1px),
+                radial-gradient(circle, #fff 2px, transparent 2px),
+                radial-gradient(circle, #fff 1px, transparent 1px),
+                radial-gradient(circle, #fff 1px, transparent 1px);
+            background-size: 100px 100px, 120px 120px, 140px 140px, 160px 160px, 180px 180px;
+            background-position: 0 0, 30px 40px, 50px 80px, 70px 20px, 100px 60px;
+            animation: snowfall 20s linear infinite;
+            opacity: 0.8;
+        }
+
+        .fullscreen-view::after {
+            background-image: 
+                radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px),
+                radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px),
+                radial-gradient(circle, rgba(255,255,255,0.7) 1px, transparent 1px),
+                radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px);
+            background-size: 110px 110px, 140px 140px, 170px 170px, 200px 200px;
+            background-position: 20px 20px, 80px 60px, 40px 100px, 120px 40px;
+            animation: snowfall 25s linear infinite;
+            opacity: 0.6;
+        }
+
+        .fullscreen-view.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-fullscreen-btn {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: var(--primary-red);
+            color: var(--white);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 2em;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            z-index: 2001;
+            box-shadow: var(--shadow);
+        }
+
+        .close-fullscreen-btn:hover {
+            background: var(--deep-green);
+            transform: scale(1.15) rotate(90deg);
+        }
+
         .footer p {
             font-weight: 700;
             font-size: 1.3em;
@@ -729,6 +892,14 @@
         </div>
     </div>
 
+    <!-- Fullscreen Background View -->
+    <div class="fullscreen-view" id="fullscreen-view">
+        <button class="close-fullscreen-btn" onclick="closeFullscreenView()">✕</button>
+    </div>
+
+    <!-- Fullscreen Button -->
+    <button class="fullscreen-btn" onclick="openFullscreenView()" title="Veure la imatge de fons"> Veure Fons</button>
+
     <!-- Modal -->
     <div class="modal" id="modal">
         <div class="modal-content">
@@ -743,23 +914,27 @@
     <!-- Confetti Canvas -->
     <canvas id="confetti-canvas"></canvas>
 
+    <!-- Imgur Embed Script -->
+    <script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+
     <script>
         // ==================== DADES ====================
         const adventData = [
             {
                 day: 1,
                 type: 'foto',
-                title: 'Dia 1: El Començament de la Màgia ✨',
-                photo: '❤️',
+                title: 'Dia 1: Comença el calendari ✨',
+                photo: 'https://i.imgur.com/xqPaFnY.jpg',
                 text: 'Avui comença el teu calendari d\'advent personalitzat. Cada dia descobriràs una nova sorpresa que he preparat amb tot el meu amor per a tu. No estic acostumat a programar web però he fet el que he pogut, espero que t\'agradi. T\'estimo! 💕'
             },
             {
                 day: 2,
                 type: 'trivia',
-                title: 'Dia 2: Moments Nostres 💑',
-                question: 'Quin va ser el lloc on ens vam conèixer?',
-                options: ['Placeholder 1', 'Placeholder 2', 'Placeholder 3', 'Placeholder 4'],
-                answer: 'Placeholder 1'
+                title: 'Dia 2: Trivia 💑',
+                question: 'Quin dia ens vam parlar per 1ra vegada?',
+                options: ['17 Febrer', '21 Febrer', '28 Febrer', '28 Març'],
+                answer: '17 Febrer',
+                correctMessage: '✓ Correcte! El dia que tot va canviar per a mi. No havia chatejat mai tant en la vida, però amb una persona tan interessant com tu era impossible no fer-ho. 💕'
             },
             {
                 day: 3,
@@ -767,7 +942,8 @@
                 title: 'Dia 3: Endevina el Moment 🔮',
                 enigma: 'Quin mes vam començar la nostra història d\'amor?',
                 hint: 'Pista: Pensa en aquell dia especial quan tot va canviar per a nosaltres...',
-                answer: 'placeholder'
+                answer: 'placeholder',
+                correctMessage: '✓ Exacte! El mes que va marcar el início de la nostra història més bonica. Cada moment des d\'aleshores és meravellós. 💫❤️'
             },
             {
                 day: 4,
@@ -775,7 +951,8 @@
                 title: 'Dia 4: Els Nostres Gustos 💕',
                 question: 'Quin és el nostre plat favorit per compartir?',
                 options: ['Placeholder 1', 'Placeholder 2', 'Placeholder 3', 'Placeholder 4'],
-                answer: 'Placeholder 1'
+                answer: 'Placeholder 1',
+                correctMessage: '✓ Exactament! Els millors moments els compartim prenent aquest plat junts. 🍽️❤️'
             },
             {
                 day: 5,
@@ -790,7 +967,8 @@
                 title: 'Dia 6: El Nostre Secret 💫',
                 enigma: 'Quin és l\'apodo especial que ens diem l\'un a l\'altre?',
                 hint: 'Pista: És algo que ens diem cada dia amb molta tendresa...',
-                answer: 'placeholder'
+                answer: 'placeholder',
+                correctMessage: '✓ Sí! Aquell apodo que és només nostre, que resonen a meu cor cada vegada que el pronuncies. Ets el meu tresor secret. 🤫💕'
             },
             {
                 day: 7,
@@ -798,7 +976,8 @@
                 title: 'Dia 7: Aventures Junts 🎢',
                 question: 'On vam anar al nostre primer viatge junts?',
                 options: ['Placeholder 1', 'Placeholder 2', 'Placeholder 3', 'Placeholder 4'],
-                answer: 'Placeholder 1'
+                answer: 'Placeholder 1',
+                correctMessage: '✓ Correcte! Aquell viatge que va ser el començament de molts més. Vull viatjar el mundo sencer contigo! ✈️🌍'
             },
             {
                 day: 8,
@@ -813,7 +992,8 @@
                 title: 'Dia 9: El Nostre Temps Junts ⏰',
                 enigma: 'Quants anys portem junts? (aproximadament)',
                 hint: 'Pista: Compta des del dia que em vas robar el cor...',
-                answer: 'placeholder'
+                answer: 'placeholder',
+                correctMessage: '✓ Correcte! Cada segon ha estat més valuós que tota l\'eternitat. El temps contigo vola i sempre vol més. ⏳💖'
             },
             {
                 day: 10,
@@ -821,7 +1001,8 @@
                 title: 'Dia 10: Moments Màgics 💋',
                 question: 'On va ser el nostre primer petó?',
                 options: ['Placeholder 1', 'Placeholder 2', 'Placeholder 3', 'Placeholder 4'],
-                answer: 'Placeholder 1'
+                answer: 'Placeholder 1',
+                correctMessage: '✓ Sí! Aquell moment meravellós que va ser el més bonic de la meva vida. Recordo cada detall com si fos ara. 💗✨'
             },
             {
                 day: 11,
@@ -836,7 +1017,8 @@
                 title: 'Dia 12: Comptant els Mesos 📅',
                 enigma: 'Quants mesos ens estimem profundament? (aproximat)',
                 hint: 'Pista: Des d\'aquell dia meravellós fins avui...',
-                answer: 'placeholder'
+                answer: 'placeholder',
+                correctMessage: '✓ Exacte! Mesos plens d\'amor que han sembrat un garden infinit al meu cor. Cada mes és una nova raó per estimarte més. 📅💕'
             },
             {
                 day: 13,
@@ -844,7 +1026,8 @@
                 title: 'Dia 13: La Nostra Cançó 🎵',
                 question: 'Quina cançó considerem "la nostra"?',
                 options: ['Placeholder 1', 'Placeholder 2', 'Placeholder 3', 'Placeholder 4'],
-                answer: 'Placeholder 1'
+                answer: 'Placeholder 1',
+                correctMessage: '✓ Correcte! Quella cançó que sempre canturreja al teu costat. Cada nota em recorda el teu amor. 🎶💕'
             },
             {
                 day: 14,
@@ -859,7 +1042,8 @@
                 title: 'Dia 15: Somnis Compartits 🏡',
                 enigma: 'Quin és el nostre lloc somiat per viure junts?',
                 hint: 'Pista: És un lloc del que sempre parlem amb il·lusió...',
-                answer: 'placeholder'
+                answer: 'placeholder',
+                correctMessage: '✓ Sí! Aquell lloc on somiem construir la nostra familia i viure els millors dies junts. La casa més bonica és la que compartim amb tu. 🏡❤️'
             },
             {
                 day: 16,
@@ -867,7 +1051,8 @@
                 title: 'Dia 16: Rutines Màgiques 🌅',
                 question: 'Quin és el nostre ritual matinal favorit?',
                 options: ['Placeholder 1', 'Placeholder 2', 'Placeholder 3', 'Placeholder 4'],
-                answer: 'Placeholder 1'
+                answer: 'Placeholder 1',
+                correctMessage: '✓ Exactament! Aquells moments tranquils junts són els més preciosos del meu dia. Gràcies per aquestes rutines plenes d\'amor. 🌅💑'
             },
             {
                 day: 17,
@@ -882,7 +1067,8 @@
                 title: 'Dia 18: Els Teus Gustos 🍰',
                 enigma: 'Quin és el teu sabor de dolç favorit?',
                 hint: 'Pista: És algo que sempre demanes quan anem junts...',
-                answer: 'placeholder'
+                answer: 'placeholder',
+                correctMessage: '✓ Correcte! Igual que aquell dolç és deliciós, tu ets la cosa més dolça de la meva vida. Te amo. 🍰💗'
             },
             {
                 day: 19,
@@ -890,7 +1076,8 @@
                 title: 'Dia 19: Futur Junts 👨‍👩‍👧‍👦',
                 question: 'Quants fills somiem tenir junts?',
                 options: ['Placeholder 1', 'Placeholder 2', 'Placeholder 3', 'Placeholder 4'],
-                answer: 'Placeholder 1'
+                answer: 'Placeholder 1',
+                correctMessage: '✓ Correcte! Somiem junts amb la família que formarem. No puc esperar per veure-t\'hi com a pare/mare! 👨‍👩‍👧‍👦💕'
             },
             {
                 day: 20,
@@ -905,7 +1092,8 @@
                 title: 'Dia 21: Colors de l\'Ànima 🎨',
                 enigma: 'Quin és el meu color favorit?',
                 hint: 'Pista: És el color que més m\'agrada portar...',
-                answer: 'placeholder'
+                answer: 'placeholder',
+                correctMessage: '✓ Exacte! Aquell color que reflecteix la bellesa de la teva ànima. Els colors del món són més bonics al teu costat. 🎨✨'
             },
             {
                 day: 22,
@@ -913,7 +1101,8 @@
                 title: 'Dia 22: Llocs Especials 🌹',
                 question: 'Quin és el nostre restaurant favorit?',
                 options: ['Placeholder 1', 'Placeholder 2', 'Placeholder 3', 'Placeholder 4'],
-                answer: 'Placeholder 1'
+                answer: 'Placeholder 1',
+                correctMessage: '✓ Exacte! Aquell restaurant on sempre pasem moments tan especials. Les millors cenes sempre són contigo! 🍷🌹'
             },
             {
                 day: 23,
@@ -928,7 +1117,8 @@
                 title: 'Dia 24: Missatge del Cor 💖',
                 enigma: 'Completa aquesta frase: "Tu eres el meu ____ per sempre"',
                 hint: 'Pista: És algo que m\'agradaria que fossim eternament...',
-                answer: 'amor'
+                answer: 'amor',
+                correctMessage: '✓ Sí! El meu amor! Per sempre i eternament. Aquest calendari és el meu costat pronunciant que t\'estimo amb tota la meva ànima. Feliç Nadal, amor meu! 💖🎄'
             }
         ];
 
@@ -1019,12 +1209,18 @@
             body.innerHTML = '';
 
             if (item.type === 'foto') {
-                body.innerHTML = `
+                let photoHtml = `
                     <div class="photo-container">
-                        <div class="photo-placeholder">${item.photo}</div>
-                        <div class="photo-text">${item.text}</div>
+                `;
+                if (item.photo.startsWith('http')) {
+                    photoHtml += `<img src="${item.photo}" alt="Photo" style="width: 100%; max-width: 500px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 30px;">`;
+                } else {
+                    photoHtml += `<div class="photo-placeholder">${item.photo}</div>`;
+                }
+                photoHtml += `<div class="photo-text">${item.text}</div>
                     </div>
                 `;
+                body.innerHTML = photoHtml;
                 saveCompleted(item.day);
             } else if (item.type === 'trivia') {
                 body.innerHTML = `
@@ -1056,6 +1252,16 @@
             buildCalendar();
         }
 
+        function openFullscreenView() {
+            document.getElementById('fullscreen-view').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeFullscreenView() {
+            document.getElementById('fullscreen-view').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
         function buildTriviaOptions(item) {
             const container = document.getElementById('trivia-options');
             item.options.forEach(option => {
@@ -1079,8 +1285,10 @@
             });
 
             if (selected === correct) {
+                const currentItem = adventData.find(d => d.day === day);
+                const message = currentItem.correctMessage || '✓ Correcte! Ets increïble! 🎉';
                 feedback.className = 'feedback active correct';
-                feedback.textContent = '✓ Correcte! Ets increïble! 🎉';
+                feedback.textContent = message;
                 saveCompleted(day);
                 createConfetti();
             } else {
@@ -1095,8 +1303,10 @@
             const btn = event.target;
 
             if (input.value.toLowerCase().trim() === correct.toLowerCase().trim()) {
+                const currentItem = adventData.find(d => d.day === day);
+                const message = currentItem.correctMessage || '✓ Correcte! Has desbloquejat el misteri! 🔓';
                 feedback.className = 'feedback active correct';
-                feedback.textContent = '✓ Correcte! Has desbloquejat el misteri! 🔓';
+                feedback.textContent = message;
                 input.disabled = true;
                 btn.disabled = true;
                 saveCompleted(day);
@@ -1122,7 +1332,7 @@
             const ctx = canvas.getContext('2d');
 
             const confetti = [];
-            const colors = ['#c0152f', '#FFD700', '#32b8c6', '#1a686f', '#FF69B4', '#FF1493'];
+            const colors = ['#c0152f', '#FFD700', '#32b8c6', '#1a686f', '#8B0000', '#FF0000'];
 
             for (let i = 0; i < 150; i++) {
                 confetti.push({
