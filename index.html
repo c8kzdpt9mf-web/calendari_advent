@@ -1361,14 +1361,18 @@
             const feedback = document.getElementById('feedback');
             const buttons = document.querySelectorAll('.option-btn');
             
+            // Marcar el botó seleccionat
             buttons.forEach(btn => {
-                btn.disabled = true;
                 if (btn.textContent === selected) {
                     btn.classList.add('selected');
                 }
             });
 
             if (selected === correct) {
+                // Resposta correcta
+                buttons.forEach(btn => {
+                    btn.disabled = true;
+                });
                 const currentItem = adventData.find(d => d.day === day);
                 const message = currentItem.correctMessage || '✓ Correcte! Ets increïble! 🎉';
                 feedback.className = 'feedback active correct';
@@ -1376,8 +1380,9 @@
                 saveCompleted(day);
                 createConfetti();
             } else {
+                // Resposta incorrecta - permetre reintentar
                 feedback.className = 'feedback active incorrect';
-                feedback.textContent = `✗ Incorrecte! La resposta correcta era: ${correct}`;
+                feedback.textContent = '✗ Incorrecte. Torna-ho a provar!';
             }
         }
 
