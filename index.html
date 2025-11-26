@@ -937,7 +937,7 @@
     <div class="container">
         <header>
             <h1>🎄 Calendari d'Advent 2025🎄</h1>
-            <p class="subtitle">Cada dia una sorpresa especial per a tu, amor 💕</p>
+            <p class="subtitle">Cada dia descobriràs una sorpresa especial 💕</p>
             <p class="date-info" id="current-date"></p>
             <div class="testing-mode">
                 <label>
@@ -954,7 +954,7 @@
         <div class="calendar-grid" id="calendar-grid"></div>
 
         <div class="footer">
-            <p>💝 Fet amb tot el meu amor per a tu 💝</p>
+            <p>💝 Fet amb molt amor per a tu 💝</p>
             <p style="margin-top: 10px; font-size: 0.9em;">T'estimo infinit ❤️</p>
         </div>
     </div>
@@ -992,7 +992,7 @@
                 type: 'foto',
                 title: 'Dia 1: Comença el calendari ✨',
                 photo: 'https://i.imgur.com/xqPaFnY.jpg',
-                text: 'Avui comença el teu calendari d\'advent personalitzat. Cada dia descobriràs una nova sorpresa que he preparat amb tot el meu amor per a tu. No estic acostumat a programar web però he fet el que he pogut, espero que t\'agradi. T\'estimo! 💕'
+                text: 'Avui comença el teu calendari d\'advent personalitzat. Cada dia descobriràs una nova sorpresa que he preparat de tot cor per a tu. No estic acostumat a programar web però he fet el que he pogut, espero que t\'agradi. T\'estimo! 💕'
             },
             {
                 day: 2,
@@ -1094,10 +1094,12 @@
             },
             {
                 day: 14,
-                type: 'foto',
-                photo: '💕',
-                title: 'Dia 14: Amor Infinit ∞',
-                text: 'El Nadal és meravellós, però res és comparable amb l\'alegria que em dónes cada dia. T\'estimo més que a res en aquest món! 💗'
+                type: 'trivia',
+                title: 'Dia 14: A veure si em coneixes 💕',
+                question: 'Què és el que més m\'agrada?',
+                options: ['Menjar', 'Viatjar', 'Pizza de burrata i crema de festuc', 'La teva companyia'],
+                answer: 'La teva companyia',
+                correctMessage: '✓ Em pot agradar molt menjar 😂 però mai igualarà com m\'omple de felicitat tenir-te al meu costat. Absolutament tot de tu m\'enamora. Des del més petit detall fins als moments més especials. T\'estimo amore! 💕'
             },
             {
                 day: 15,
@@ -1108,28 +1110,29 @@
             },
             {
                 day: 16,
-                type: 'trivia',
-                title: 'Dia 16: Rutines Màgiques 🌅',
-                question: 'Quin és el nostre ritual matinal favorit?',
-                options: ['Placeholder 1', 'Placeholder 2', 'Placeholder 3', 'Placeholder 4'],
-                answer: 'Placeholder 1',
-                correctMessage: '✓ Exactament! Aquells moments tranquils junts són els més preciosos del meu dia. Gràcies per aquestes rutines plenes d\'amor. 🌅💑'
+                type: 'image-trivia',
+                image: 'https://i.imgur.com/A5uzKch.jpeg',
+                title: 'Dia 16: Aniversari 🍰',
+                question: 'Quants mesos feiem mentre gaudíem d\'aquest meravellós paisatge?',
+                answer: '6',
+                hint: 'Pista: En número...',
+                correctMessage: '✓ Yes! Mig any al teu costat que m\'havia passat volant. Quan llegeixis això ja casi farem 9 mesos, i no tinc plans de parar de complir mesos junts almenys fins que arribem als 12000 🌅😜💑'
             },
             {
                 day: 17,
                 type: 'foto',
-                photo: '⭐',
-                title: 'Dia 17: La Meva Estrella ✨',
-                text: 'Tu ets l\'estrella més brillant del meu cel. Il·lumines cada dia de la meva vida amb la teva llum meravellosa. Gràcies per existir! 🌟'
+                photo: 'https://i.imgur.com/n2L2U5M.jpeg',
+                title: 'Dia 17: Un nou viatge',
+                text: 'Tinc moltíssimes ganes de planejar un nou viatge amb tu. Ves pensant on vols anar per Setmana Santa o l\'estiu... Envia\'m ara un whats amb el lloc on t\'agradaria més anar. 🌟'
             },
             {
                 day: 18,
                 type: 'escape',
-                title: 'Dia 18: Els Teus Gustos 🍰',
-                enigma: 'Quin és el teu sabor de dolç favorit?',
-                hint: 'Pista: És algo que sempre demanes quan anem junts...',
-                answer: 'placeholder',
-                correctMessage: '✓ Correcte! Igual que aquell dolç és deliciós, tu ets la cosa més dolça de la meva vida. Te amo. 🍰💗'
+                title: 'Dia 18: Per la cara, enigma Espacial 🚀',
+                enigma: 'Quants segons tarda la llum del Sol a arribar a la Terra? (Respon només el número)',
+                hint: 'Pista: És una mica més de 8 minuts en format de segons...',
+                answer: '500',
+                correctMessage: '✓ Correcte! Alguna pregunta de l\'espai havia de posar. Que sàpigues que t\'estimo més enllà de la fi de la nostra galàxia! 🚀💫'
             },
             {
                 day: 19,
@@ -1140,10 +1143,12 @@
             },
             {
                 day: 20,
-                type: 'foto',
-                photo: '🎅',
-                title: 'Dia 20: El Millor Regal 🎁',
-                text: 'Poden arribar tots els regals del món, però cap serà tan valuós com tenir-te a tu al meu costat. Tu ets el meu millor Nadal! 🎄'
+                type: 'trivia',
+                title: 'Dia 20: Aquesta és difícil 🌅',
+                question: 'Quina foto que et vaig enviar abans?',
+                options: ['Un selfie al Mobile World Congress', 'Uns mitjons d\'hamburgueses', 'Jo fent el pi vestit de pallasso', 'El gos de la Judit'],
+                answer: 'El gos de la Judit',
+                correctMessage: '✓ Yes! Diria que era el dia abans d\'anar a fer el bubble tea, que vaig anar a fer una barbacoa amb els amics a casa la Judit. Ah, i per si te n\'havies oblidat t\'estimo moltíssim! 💕'
             },
             {
                 day: 21,
@@ -1154,28 +1159,28 @@
             },
             {
                 day: 22,
-                type: 'trivia',
-                title: 'Dia 22: Llocs Especials 🌹',
-                question: 'Quin és el nostre restaurant favorit?',
-                options: ['Placeholder 1', 'Placeholder 2', 'Placeholder 3', 'Placeholder 4'],
-                answer: 'Placeholder 1',
-                correctMessage: '✓ Exacte! Aquell restaurant on sempre pasem moments tan especials. Les millors cenes sempre són contigo! 🍷🌹'
+                type: 'image-trivia',
+                image: 'https://i.imgur.com/qhRtiHn.jpeg',
+                title: 'Dia 22: Increíble foto 🌹',
+                question: 'A la cua de quina atracció estávem quan vam fer aquest fotón?',
+                answer: 'uncharted',
+                hint: 'Pista: Molta cua...',
+                correctMessage: '✓ Em flipa aquesta foto és impossible mirar-la sense riure. Love youuu 🌹'
             },
             {
                 day: 23,
                 type: 'foto',
-                photo: '🌟',
+                photo: 'https://i.imgur.com/ETcVXJm.png',
                 title: 'Dia 23: Gairebé Nadal 🎄',
-                text: 'Només queda un dia per Nadal, però cada dia amb tu és una celebració. Gràcies per fer que cada moment sigui tan especial. T\'adoro! 💝'
+                text: 'Tinc moltíssimes ganes de viure el primer Nadal amb tu. Gràcies per fer que cada moment sigui tan especial. T\'adoro! 💝'
             },
             {
                 day: 24,
-                type: 'escape',
-                title: 'Dia 24: Missatge del Cor 💖',
-                enigma: 'Completa aquesta frase: "Tu eres el meu ____ per sempre"',
-                hint: 'Pista: És algo que m\'agradaria que fossim eternament...',
-                answer: 'amor',
-                correctMessage: '✓ Sí! El meu amor! Per sempre i eternament. Aquest calendari és el meu costat pronunciant que t\'estimo amb tota la meva ànima. Feliç Nadal, amor meu! 💖🎄'
+                type: 'foto',
+                photo: 'https://i.imgur.com/wWkfIKG.png',
+                emoji: '💕🎄💕',
+                title: 'Dia 24: Un petit spoiler de la sorpresa que et tinc preparada 🎄',
+                text: 'Feliç Nadal, amor! Segur que serà el millor Nadal que he viscut mai tenint-te al meu costat. Per sempre i eternament, t\'estimo amb totes les meves forces. 🎄💕'
             }
         ];
 
@@ -1226,7 +1231,7 @@
                 if (!isUnlocked(item.day)) {
                     inner.innerHTML = `<div class="lock-icon">🔒</div><div class="day-number">${item.day}</div>`;
                 } else {
-                    const emoji = item.type === 'foto' ? '💝' : item.type === 'trivia' ? '💭' : item.type === 'image-trivia' ? '🖼️' : item.type === 'music' ? '🎵' : '🔑';
+                    const emoji = item.emoji || (item.type === 'foto' ? '💝' : item.type === 'trivia' ? '💭' : item.type === 'image-trivia' ? '🖼️' : item.type === 'music' ? '🎵' : '🔑');
                     inner.innerHTML = `<div class="day-number">${item.day}</div><div class="day-label">${emoji}</div>`;
                     
                     if (isCompleted(item.day)) {
